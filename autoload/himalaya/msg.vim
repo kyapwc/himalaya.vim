@@ -30,7 +30,7 @@ function! himalaya#msg#list()
     call s:print_info("Done!")
 
     let buftype = stridx(bufname("%"), "Himalaya messages") == 0 ? "file" : "edit"
-    execute printf("silent! %s Himalaya messages [%s] [page %d]", buftype, tolower(mbox), page + 1)
+    execute printf("silent! %s Himalaya messages [page %d]", buftype, page + 1)
     setlocal modifiable
     execute "%d"
     call append(0, s:render("list", msgs))
