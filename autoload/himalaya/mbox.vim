@@ -21,7 +21,7 @@ endfunction
 
 " Mailbox
 
-let s:curr_mbox = "INBOX"
+let s:curr_mbox = ""
 function! himalaya#mbox#curr_mbox()
   return s:curr_mbox
 endfunction
