@@ -24,8 +24,8 @@ function! himalaya#msg#list()
     let mbox = himalaya#mbox#curr_mbox()
     let page = himalaya#mbox#curr_page()
 
-    call s:print_info(printf("Fetching %s messages…", tolower(mbox)))
-    let msgs = s:cli("list %s --page %d", [shellescape(mbox), page])
+    call s:print_info(printf("Fetching messages…", tolower(mbox)))
+    let msgs = s:cli("list --page %d", [page])
     let msgs = map(copy(msgs), "s:format_msg_for_list(v:val)")
     call s:print_info("Done!")
 
@@ -49,7 +49,7 @@ function! himalaya#msg#read()
     let mbox = himalaya#mbox#curr_mbox()
 
     call s:print_info(printf("Fetching message %d…", s:msg_id))
-    let msg = s:cli("read %d %s", [s:msg_id, shellescape(mbox)])
+    let msg = s:cli("read %d", [s:msg_id])
     call s:print_info("Done!")
 
     let attachment = msg.hasAttachment ? " []" : ""
@@ -89,7 +89,7 @@ function! himalaya#msg#reply()
     let msg_id = stridx(bufname("%"), "Himalaya messages") == 0 ? s:get_focused_msg_id() : s:msg_id
 
     call s:print_info("Fetching reply template…")
-    let msg = s:cli("template reply %d  %s", [msg_id, shellescape(mbox)])
+    let msg = s:cli("template reply %d", [msg_id])
     call s:print_info("Done!")
 
     execute printf("silent! edit Himalaya reply [%d]", msg_id)
@@ -109,7 +109,7 @@ function! himalaya#msg#reply_all()
     let msg_id = stridx(bufname("%"), "Himalaya messages") == 0 ? s:get_focused_msg_id() : s:msg_id
 
     call s:print_info("Fetching reply all template…")
-    let msg = s:cli("template reply %d  %s --all", [msg_id, shellescape(mbox)])
+    let msg = s:cli("template reply %d --all", [msg_id])
     call s:print_info("Done!")
 
     execute printf("silent! edit Himalaya reply all [%d]", msg_id)
@@ -129,7 +129,7 @@ function! himalaya#msg#forward()
     let msg_id = stridx(bufname("%"), "Himalaya messages") == 0 ? s:get_focused_msg_id() : s:msg_id
 
     call s:print_info("Fetching forward template…")
-    let msg = s:cli("template forward %d  %s", [msg_id, shellescape(mbox)])
+    let msg = s:cli("template forward %d", [msg_id])
     call s:print_info("Done!")
 
     execute printf("silent! edit Himalaya forward [%d]", msg_id)
@@ -179,7 +179,7 @@ function! himalaya#msg#attachments()
     let msg_id = stridx(bufname("%"), "Himalaya messages") == 0 ? s:get_focused_msg_id() : s:msg_id
 
     call s:print_info("Downloading attachments…")
-    let msg = s:cli("attachments %d  %s", [msg_id, shellescape(mbox)])
+    let msg = s:cli("attachments %d", [msg_id])
     call s:print_info("Done!")
   catch
     call s:print_err(v:exception)
