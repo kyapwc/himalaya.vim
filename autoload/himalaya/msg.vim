@@ -190,13 +190,13 @@ endfunction
 
 let s:config = {
   \"list": {
-    \"columns": ["id", "flags", "subject", "sender", "date"],
+    \"columns": ["id", "flags", "subject", "from", "date"],
   \},
   \"labels": {
     \"id": "ID",
     \"flags": "FLAGS",
     \"subject": "SUBJECT",
-    \"sender": "SENDER",
+    \"from": "SENDER",
     \"date": "DATE",
   \},
 \}

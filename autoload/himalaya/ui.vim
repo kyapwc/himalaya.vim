@@ -9,12 +9,12 @@ let s:msgs = []
 
 let s:config = {
   \'list': {
-    \'columns': ['id', 'subject', 'sender', 'date'],
+    \'columns': ['id', 'subject', 'from', 'date'],
   \},
   \'labels': {
     \'id': 'ID',
     \'subject': 'SUBJECT',
-    \'sender': 'SENDER',
+    \'from': 'SENDER',
     \'date': 'DATE',
   \},
 \}
