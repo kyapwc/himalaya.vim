@@ -24,7 +24,7 @@ function! himalaya#msg#list()
     let mbox = himalaya#mbox#curr_mbox()
     let page = himalaya#mbox#curr_page()
 
-    call s:print_info(printf("Fetching messages…", tolower(mbox)))
+    call s:print_info(printf("Fetching messages…"))
     let msgs = s:cli("list --page %d", [page])
     let msgs = map(copy(msgs), "s:format_msg_for_list(v:val)")
     call s:print_info("Done!")
